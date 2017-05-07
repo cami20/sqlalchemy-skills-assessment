@@ -75,7 +75,14 @@ def get_model_info(year):
     """Takes in a year and prints out each model name, brand name, and brand
     headquarters for that year using only ONE database query."""
 
-    pass
+    year_input = raw_input('Please enter the model year you are looking for: ')
+    results = []
+
+    model_info = Brand.query.all()
+
+    for model in model_info:
+        if model.brand.year=1960:
+            print "\n%s %s %s" % (model.brand.name, model.name, model.headquarters)
 
 
 def get_brands_summary():
