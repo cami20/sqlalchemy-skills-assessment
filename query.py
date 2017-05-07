@@ -76,32 +76,47 @@ def get_model_info(year):
     headquarters for that year using only ONE database query."""
 
     year_input = raw_input('Please enter the model year you are looking for: ')
-    results = []
 
     model_info = Brand.query.all()
 
     for model in model_info:
         if model.brand.year=1960:
-            print "\n%s %s %s" % (model.brand.name, model.name, model.headquarters)
+            print "\n%s %s %s\n" % (model.brand.name, model.name, model.headquarters)
 
 
 def get_brands_summary():
     """Prints out each brand name (once) and all of that brand's models,
     including their year, using only ONE database query."""
 
-    pass
+    brand_model = Brand.query.all()
+
+    for brand in brand_model:
+        print "\n%s" % (brand.name)
+        print "\n%s, %s" % (brand.brand.name, brand.brand.year)
 
 
 def search_brands_by_name(mystr):
     """Returns all Brand objects corresponding to brands whose names include
     the given string."""
 
-    pass
+    name_input = raw_input("Please enter the brand you are looking for: ")
+
+    brand_string = Brand.query.filter(Brand.name.like(%name_input%)).all()
+
+    for brand in brand_string:
+        print '\n%s' % (brand.name)
+
 
 
 def get_models_between(start_year, end_year):
     """Returns all Model objects corresponding to models made between
     start_year (inclusive) and end_year (exclusive)."""
 
-    pass
+    start_year = raw_input("Please enter your start year: ")
+    end_year = raw_input("Please enter your end year: ")
+
+    start_end = Model.query.filter((Model.year >= start_year) & (Model.year <= end_year)).all()
+
+    for start in start_end:
+        print '\n%s' % (Model.name)
 
