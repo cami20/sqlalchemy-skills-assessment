@@ -23,13 +23,17 @@ init_app()
 # 1. What is the datatype of the returned value of
 # ``Brand.query.filter_by(name='Ford')``?
 
-
+"""The data type that will be returned is a list of tuples."""
 
 # 2. In your own words, what is an association table, and what type of
 # relationship (many to one, many to many, one to one, etc.) does an
 # association table manage?
 
-
+"""An association table is a table that acts as the glue between two
+tables. It sits in between two tables that with out the association
+table would have no meaningful rows shared between them. It allows both 
+of the tables to have a one to many relationship. Typically you would 
+put an """
 
 
 # -------------------------------------------------------------------
@@ -37,7 +41,7 @@ init_app()
 
 
 # Get the brand with the brand_id of ``ram``.
-q1 = None
+q1 = Brand.query.filter_by(brand_id='ram').all()
 
 # Get all models with the name ``Corvette`` and the brand_id ``che``.
 q2 = None
