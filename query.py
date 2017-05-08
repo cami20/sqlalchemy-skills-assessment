@@ -75,12 +75,12 @@ def get_model_info(year):
     """Takes in a year and prints out each model name, brand name, and brand
     headquarters for that year using only ONE database query."""
 
-    year_input = raw_input('Please enter the model year you are looking for: ')
+    #year_input = raw_input('Please enter the model year you are looking for: ')
 
-    model_info = Brand.query.all()
+    model_info = Model.query.all()
 
     for model in model_info:
-        if model.brand.year=1960:
+        if model.brand.year=year:
             print "\n%s %s %s\n" % (model.brand.name, model.name, model.headquarters)
 
 
@@ -91,17 +91,20 @@ def get_brands_summary():
     brand_model = Brand.query.all()
 
     for brand in brand_model:
-        print "\n%s" % (brand.name)
-        print "\n%s, %s" % (brand.brand.name, brand.brand.year)
+        brand_name = brand.name
+        if brand.name = brand_name:
+            print "\n%s" % (brand.name)
+        else:
+            print "\n%s, %s" % (brand.brand.name, brand.brand.year)
 
 
 def search_brands_by_name(mystr):
     """Returns all Brand objects corresponding to brands whose names include
     the given string."""
 
-    name_input = raw_input("Please enter the brand you are looking for: ")
+    #name_input = raw_input("Please enter the brand you are looking for: ")
 
-    brand_string = Brand.query.filter(Brand.name.like(%name_input%)).all()
+    brand_string = Brand.query.filter(Brand.name.like(%mystr%)).all()
 
     for brand in brand_string:
         print '\n%s' % (brand.name)
@@ -112,8 +115,8 @@ def get_models_between(start_year, end_year):
     """Returns all Model objects corresponding to models made between
     start_year (inclusive) and end_year (exclusive)."""
 
-    start_year = raw_input("Please enter your start year: ")
-    end_year = raw_input("Please enter your end year: ")
+    # start_year = raw_input("Please enter your start year: ")
+    # end_year = raw_input("Please enter your end year: ")
 
     start_end = Model.query.filter((Model.year >= start_year) & (Model.year <= end_year)).all()
 
